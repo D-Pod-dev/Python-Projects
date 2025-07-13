@@ -1,0 +1,113 @@
+#this code contains errors
+
+from Exercises import *
+
+#Exercise-viewing code:
+
+def main():
+
+    from time import sleep
+
+    exercise_descriptions = {
+    exercise_1_1_2 :
+    """
+    Rewrite the Insertion-sort procedure to sort into nonincreasing instead of nondecreasing order.""",
+    exercise_1_1_3
+    """
+    Consider the searching problem:
+    Input: A sequence of n numbers A = [a_1, a_2, ..., a_n] and a value v.
+    Output: An index i such that v = A[i] or the special value None if v does not appear in A.""",
+    """
+    Consider the problem of adding two n-bit binary integers, stroed in two n-element arrays A and B.
+    The sum of the two integers should be stored in binary form in an (n+1)-element array C. State
+    the problem formally and write pseudocode for adding the two  integers."""
+    }
+    exercise_solutions = []
+
+    def get_exercise_selection():
+        selection = "["
+        for i in range(len(exercise_solutions)):
+            selection = selection + str(i+1)
+            if i < exercise_solutions.index(exercise_solutions[-1]):
+                selection = selection + " | "
+        selection = selection + "]"
+        return selection
+
+    def input_to_array(userInput):
+        A = userInput.split(",")
+        for i in range(len(A)):
+            A[i] = int(A[i])
+        return A
+
+    def input_to_int(userInput):
+        I = int(userInput)
+        return I
+
+    def input_to_string(userInput):
+        S = str(userInput)
+        return S
+
+    inputTypeDescriptions = {input_to_array : "(list of numbers separated by comma only) ", input_to_int : "(integer) ", input_to_string : ""}
+
+    def exercise_view():
+        while True:
+            try:
+                exercise_index = int(input(f"Select an exercise to view {get_exercise_selection()}: ")) - 1
+                if exercise_index not in range(len(exercise_solutions)):
+                    print("That's not a valid exercise. Try again.")
+                else:
+                    break
+            except ValueError:
+                print("That's not an integer. Try again.")
+            
+        print("\nExercise question:" + exercise_descriptions[exercise_index])
+        sleep(0.1)
+        
+        if type(exercise_solutions[exercise_index]) == type(main):
+            exercise_inputs = []
+            additional_input_conditions = True
+            argumentConversions = [input_to_string]
+            
+            if exercise_solutions[exercise_index] == exercise_1_2:
+                argumentConversions = [input_to_array]
+            
+            if exercise_solutions[exercise_index] == exercise_1_3:
+                argumentConversions = [input_to_array, input_to_int]
+            
+            if exercise_solutions[exercise_index] == exercise_1_4:
+                argumentConversions = [input_to_array, input_to_array]
+                additional_input_conditions = "len(exercise_inputs[0]) == len(exercise_inputs[1])"
+            
+            while True:
+                print("")
+                for argType in argumentConversions:
+                    while True:
+                        user_input = input("Input for function: " + inputTypeDescriptions[argType])
+                        try:
+                            exercise_inputs.append(argType(user_input))
+                            break
+                        except:
+                            print("Your input does not fit the correct format.")
+                            sleep(0.1)
+
+                try:
+                    eval(additional_input_conditions) # type: ignore
+                except IndexError:
+                    break
+                else:
+                    if not eval(additional_input_conditions): # type: ignore
+                        print("Your inputs do not fit the correct format.")
+                        sleep(0.1)
+                    break
+                                                
+
+            print(exercise_solutions[exercise_index](*exercise_inputs))
+            print("")
+        
+        else:
+            print(exercise_solutions[exercise_index])
+
+
+    exercise_view()
+
+#main()

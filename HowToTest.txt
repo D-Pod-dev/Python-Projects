@@ -1,0 +1,61 @@
+To create test file:
+
+1.  Create new file in your exercise folder with the name test_exercise_#_#_#.python
+
+2.  Add the contents from this template:
+
+    a.  First, add a comment with the commands needed to run the test:
+
+        r"""
+        cd C:\Users\podno\Documents\Python-Projects\Algorithms-Exercises\Exercises\Section #\Chapter #\Exercise #
+        python -m unittest test_exercise_#_#_#
+
+        """
+
+    b.  Then, import the unittest module and the file you are testing:
+
+        import unittest
+        from exercise_#_#_# import exercise_function
+
+    
+    c.  Finally, add the test case class:
+
+        class TestBinaryAddition(unittest.TestCase):
+            
+
+3. The test cases are created with this format:
+
+    def test_what_you_are_testing(self):
+        self.assertEqual(exercise_function(input), expected_output)
+    
+
+
+To test:
+
+1.  Open command prompt and navigate to this directory.
+
+    C:\Users\podno> cd C:\Users\podno\Documents\Python-Projects\Algorithms-Exercises\Exercises
+
+2.  From there, navigate to your desired exercise by navigating through:
+
+    a.  Section first,
+
+        C:\Users\podno\Documents\Python-Projects\Algorithms-Exercises> cd .\Section #
+    
+    b.  Then chapter,
+
+        C:\Users\podno\Documents\Python-Projects\Algorithms-Exercises\Section #> cd .\Chapter #
+    
+    c.  Finally exercise.
+
+        C:\Users\podno\Documents\Python-Projects\Algorithms-Exercises\Section #\Chapter #> cd .\Exercise #
+
+    You should end up at <C:\Users\podno\Documents\Python-Projects\Algorithms-Exercises\Section #\Chapter #\Exercise #>
+
+3.  Check that this directory has your desired exercise and its test.
+
+    C:\Users\podno\Documents\Python-Projects\ ... Exercise #> dir
+
+4.  Test the exercise.
+
+    C:\Users\podno\Documents\Python-Projects\ ... \Exercise #> python -m unittest test_exercise_#_#_#
